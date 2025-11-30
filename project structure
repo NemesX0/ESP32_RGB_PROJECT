@@ -1,0 +1,38 @@
+ESP32_RGB_PROJECT/
+├── CMakeLists.txt
+├── partitions.csv
+├── sdkconfig.defaults
+├── main/
+│   ├── main.c
+│   └── CMakeLists.txt
+└── components/
+    ├── fs/                 <-- FINAL decision for filesystem module
+    │   ├── include/fs.h
+    │   ├── fs.c
+    │   ├── CMakeLists.txt
+    │   └── idf_component.yml
+    │
+    ├── config_system/
+    │   ├── include/config_system.h
+    │   ├── config_system.c
+    │   └── CMakeLists.txt
+    │
+    ├── config_user/
+    │   ├── include/config_user.h
+    │   ├── config_user.c
+    │   └── CMakeLists.txt
+    │
+    ├── effects_storage/
+    │   ├── include/effects_storage.h
+    │   ├── effects_storage.c
+    │   └── CMakeLists.txt
+    │
+    ├── ws2812/
+    │   ├── include/ws2812.h
+    │   ├── ws2812.c
+    │   └── CMakeLists.txt
+    │
+    └── effects/
+        ├── include/effects.h
+        ├── effects.c
+        └── CMakeLists.txt

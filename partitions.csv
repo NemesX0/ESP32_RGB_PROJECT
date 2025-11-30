@@ -1,0 +1,12 @@
+# Name,     Type, SubType, Offset,    Size,      Flags
+nvs,        data, nvs,     0x9000,    0x5000,
+otadata,    data, ota,     0xE000,    0x2000,
+
+# A/B app slots (3 MB each)
+app0,       app,  ota_0,   0x10000,   0x300000,
+app1,       app,  ota_1,   0x310000,  0x300000,
+
+# Data partitions (all will be mounted as LittleFS in code)
+sysdata,    data, 0x40,    0x610000,  0x200000,
+userdata,   data, 0x41,    0x810000,  0x200000,
+effects,    data, 0x42,    0xA10000,  0x5F0000,
