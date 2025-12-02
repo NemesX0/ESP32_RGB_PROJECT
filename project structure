@@ -2,37 +2,47 @@ ESP32_RGB_PROJECT/
 ├── CMakeLists.txt
 ├── partitions.csv
 ├── sdkconfig.defaults
+├── sdkconfig.esp32-s3
+├── platformio.ini
+│
 ├── main/
 │   ├── main.c
 │   └── CMakeLists.txt
+│
 └── components/
-    ├── fs/                 <-- FINAL decision for filesystem module
+    ├── fs/                 
     │   ├── include/fs.h
     │   ├── fs.c
     │   ├── CMakeLists.txt
     │   └── idf_component.yml
     │
-    ├── config_system/
+    ├── esp_littlefs/       <-- manually added dependency
+    │   ├── <source files>
+    │   ├── include/
+    │   ├── CMakeLists.txt
+    │   └── idf_component.yml
+    │
+    ├── config_system/      <-- Stage 2
     │   ├── include/config_system.h
     │   ├── config_system.c
     │   └── CMakeLists.txt
     │
-    ├── config_user/
+    ├── config_user/        <-- Stage 3
     │   ├── include/config_user.h
     │   ├── config_user.c
     │   └── CMakeLists.txt
     │
-    ├── effects_storage/
+    ├── effects_storage/    <-- Stage 4
     │   ├── include/effects_storage.h
     │   ├── effects_storage.c
     │   └── CMakeLists.txt
     │
-    ├── ws2812/
+    ├── ws2812/             <-- Stage 5
     │   ├── include/ws2812.h
     │   ├── ws2812.c
     │   └── CMakeLists.txt
     │
-    └── effects/
+    └── effects/            <-- Stage 6
         ├── include/effects.h
         ├── effects.c
         └── CMakeLists.txt

@@ -1,9 +1,25 @@
+# PlatformIO / ESP-IDF build junk
 .pio/
-.vscode/
-*.log
-*.elf
-*.bin
-*.map
-sdkconfig
 build/
 cmake-build/
+sdkconfig
+sdkconfig.esp32-s3.old
+dependencies.lock
+build_logs/
+
+# VSCode junk
+.vscode/
+.vscode/*
+*.code-workspace
+
+# ESP-IDF generated junk
+managed_components/
+CMakeFiles/
+CMakeCache.txt
+*.bin
+*.elf
+*.map
+
+# OS trash
+.DS_Store
+Thumbs.db
