@@ -21,7 +21,7 @@ SRC_EXTS = ['*.c', '*.cpp']
 # 2. IGNORE LIST (For the Tree View)
 IGNORE_DIRS = {
     '.pio', 'build', 'esp_littlefs', 'cmake-build', '.vscode', 'managed_components',
-    'CMakeFiles', '.git', '.github', '.idea', '__pycache__', LOG_DIR_NAME
+    'CMakeFiles', '.git', '.github', '.gitignore',  '.idea', '__pycache__', LOG_DIR_NAME
 }
 
 IGNORE_FILES = {
