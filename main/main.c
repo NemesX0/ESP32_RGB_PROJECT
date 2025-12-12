@@ -1,3 +1,5 @@
+
+
 #include "fs.h"
 #include "config_system.h"
 #include "ws2812.h"
@@ -7,6 +9,7 @@
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+
 
 void app_main(void)
 {
@@ -43,4 +46,10 @@ void app_main(void)
         ESP_LOGE("MAIN", "WS2812 init FAILED: %s", esp_err_to_name(err));
         return;
     }
+    
+    while (true)
+    {
+    vTaskDelay(pdMS_TO_TICKS(1000));
+    }
+
 }
