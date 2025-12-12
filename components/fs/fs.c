@@ -1,9 +1,12 @@
 #include "fs.h"
 #include "esp_littlefs.h"
 #include "esp_log.h"
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <sys/stat.h>
+#include <errno.h>
 
 static const char *TAG = "fs";
 
@@ -33,8 +36,34 @@ esp_err_t fs_init(void)
     ESP_ERROR_CHECK(mount_lfs("sysdata", FS_SYS_PATH));
     ESP_ERROR_CHECK(mount_lfs("userdata", FS_USER_PATH));
     ESP_ERROR_CHECK(mount_lfs("effects", FS_FX_PATH));
-
     return ESP_OK;
+}
+
+// ---------- DIRECTORY HELPER ----------
+esp_err_t fs_ensure_dir(const char *path)
+{
+    struct stat st;
+    if (stat(path, &st) == 0)
+    {
+        if (S_ISDIR(st.st_mode))
+        {
+            return ESP_OK; // already exists
+        }
+        return ESP_FAIL; // exists but not directory
+    }
+
+    if (mkdir(path, 0755) == 0)
+    {
+        return ESP_OK;
+    }
+
+    if (errno == EEXIST)
+    {
+        return ESP_OK;
+    }
+
+    ESP_LOGE(TAG, "Failed to create dir %s (errno=%d)", path, errno);
+    return ESP_FAIL;
 }
 
 // ---------- JSON READ/WRITE ----------
@@ -60,9 +89,14 @@ char *fs_json_read(const char *path)
     rewind(f);
 
     char *buf = malloc(size + 1);
+    if (!buf)
+    {
+        fclose(f);
+        return NULL;
+    }
+
     fread(buf, 1, size, f);
     buf[size] = '\0';
-
     fclose(f);
     return buf;
 }
@@ -90,10 +124,17 @@ uint8_t *fs_bin_read(const char *path, size_t *out_size)
     rewind(f);
 
     uint8_t *buffer = malloc(size);
+    if (!buffer)
+    {
+        fclose(f);
+        return NULL;
+    }
+
     fread(buffer, 1, size, f);
     fclose(f);
 
     if (out_size)
         *out_size = size;
+
     return buffer;
 }
