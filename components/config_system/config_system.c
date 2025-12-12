@@ -20,8 +20,8 @@ static void set_defaults(system_config_t *cfg)
     memset(cfg, 0, sizeof(*cfg));
 
     cfg->provisioned = false;
-    cfg->led_gpio = 48; // default placeholder, user changes later
-    cfg->led_count = 1; // default placeholder
+    cfg->led_gpio = 5; // default placeholder, user changes later
+    cfg->led_count = 60; // default placeholder
 
     strncpy(cfg->device_name, "MotoRGB", sizeof(cfg->device_name) - 1);
     strncpy(cfg->ble_name, "MotoRGB", sizeof(cfg->ble_name) - 1);

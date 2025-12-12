@@ -19,7 +19,6 @@ void app_main(void)
         return;
     }
 
-    system_config_factory_reset();
     err = system_config_init();
     if (err != ESP_OK)
     {
@@ -44,23 +43,4 @@ void app_main(void)
         ESP_LOGE("MAIN", "WS2812 init FAILED: %s", esp_err_to_name(err));
         return;
     }
-
-    // Simple test: fill red, then green, then blue, then off.
-    ws2812_fill(255, 0, 0);
-    ws2812_show();
-    vTaskDelay(pdMS_TO_TICKS(1000));
-
-    ws2812_fill(0, 255, 0);
-    ws2812_show();
-    vTaskDelay(pdMS_TO_TICKS(1000));
-
-    ws2812_fill(0, 0, 255);
-    ws2812_show();
-    vTaskDelay(pdMS_TO_TICKS(1000));
-
-    ws2812_clear();
-    ws2812_show();
-
-    // In later stages, we will move animations into a dedicated task.
-    ESP_LOGI("MAIN", "WS2812 test sequence complete");
 }
